@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\css",
+    "\\src\\layouts",
+    "\\src\\pages",
+    "\\src\\router",
+    "\\src\\statics"
+  ],
+  "SelectedNode": "\\quasar.conf.js",
+  "PreviewInSolutionExplorer": false
+}
