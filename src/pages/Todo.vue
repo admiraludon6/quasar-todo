@@ -24,41 +24,15 @@
       class="bg-white"
       separator
       bordered>
-      <q-item v-for="(task, index) in tasks"
-              :key="task.title"
-              @click="task.done = !task.done"
-              clickable
-              :class="{ 'done bg-blue-1' : task.done }"
-              v-ripple>
-        <q-item-section avatar>
-          <q-checkbox v-model="task.done"
-                      class="no-pointer-events"
-                      color="primary" />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>{{ task.title }}</q-item-label>
-        </q-item-section>
 
-        <q-item-section side top>
-          <q-item-label caption>
-            {{ task.dueDate }}
-          </q-item-label>
-          <q-item-label caption>
-            <small>{{ task.dueTime }}</small>
-          </q-item-label>
-        </q-item-section>
+      <task
+            v-for="(task, key) in tasks"
+            :key="key"
+            :task="task"
+            :id="key">
 
-        <q-item-section v-if="task.done"
-                        side>
-          <q-btn @click.stop="deleteTask(index)"
-                 flat
-                 round
-                 dense
-                 color="primary"
-                 icon="delete" />
-        </q-item-section>
+      </task>
 
-      </q-item>
     </q-list>
     <div
       v-if="!tasks.length"
@@ -75,44 +49,22 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default {
     data() {
       return {
-        newTask: '',
-        tasks: [
-          {
-            id: 1,
-            title: 'Get bananas',
-            done: false,
-            dueDate: '2020/04/20',
-            dueTime: '14:00'
-          },
-          {
-            id: 2,
-            title: 'Eat bananas',
-            done: true,
-            dueDate: '2020/04/21',
-            dueTime: '12:00'
-          },
-          {
-            id: 3,
-            title: 'Poo bananas',
-            done: false,
-            dueDate: '2020/04/22',
-            dueTime: '14:30'
-          }
-        ]
+        newTask: ''
       }
     },
     methods: {
-      deleteTask(index) {
+      deleteTask(key) {
         this.$q.dialog({
           title: 'Confirm',
           message: 'Really delete?',
           cancel: true,
           persistent: true
         }).onOk(() => {
-          this.tasks.splice(index, 1)
+          this.tasks.splice(key, 1)
           this.$q.notify('Task deleted')
         })
       },
@@ -123,6 +75,16 @@
         })
         this.newTask=''
       }
+    },
+    computed: {
+      //tasks() {
+      //  return this.$store.getters['tasks/tasks']
+      //}
+      ...mapGetters('tasks',['tasks'])
+    },
+    components: {
+      // will be HTML attribute task
+      'task' : require('components/Tasks/Task.vue').default
     }
   }
 </script>

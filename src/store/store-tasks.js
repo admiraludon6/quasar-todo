@@ -1,28 +1,25 @@
 // This where all the data go
 const state = {
-  tasks: [
-    {
-      id: 1,
+  tasks: {
+    'ID1': {
       title: 'Get bananas',
       done: false,
       dueDate: '2020/04/20',
       dueTime: '14:00'
     },
-    {
-      id: 2,
+    'ID2': {
       title: 'Eat bananas',
       done: true,
       dueDate: '2020/04/21',
       dueTime: '12:00'
     },
-    {
-      id: 3,
+    'ID3': {
       title: 'Poo bananas',
       done: false,
       dueDate: '2020/04/22',
       dueTime: '14:30'
     }
-  ]
+  }
 }
 
 // This will contain method which manipulate the state
