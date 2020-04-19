@@ -38,17 +38,26 @@
         <q-item-section>
           <q-item-label>{{ task.title }}</q-item-label>
         </q-item-section>
-        <q-item-section
-          v-if="task.done"
-          side>
-          <q-btn
-            @click.stop="deleteTask(index)"
-            flat
-            round
-            dense
-            color="primary"
-            icon="delete" />
+
+        <q-item-section side top>
+          <q-item-label caption>
+            {{ task.dueDate }}
+          </q-item-label>
+          <q-item-label caption>
+            <small>{{ task.dueTime }}</small>
+          </q-item-label>
         </q-item-section>
+
+        <q-item-section v-if="task.done"
+                        side>
+          <q-btn @click.stop="deleteTask(index)"
+                 flat
+                 round
+                 dense
+                 color="primary"
+                 icon="delete" />
+        </q-item-section>
+
       </q-item>
     </q-list>
     <div
@@ -71,18 +80,27 @@
       return {
         newTask: '',
         tasks: [
-          /*{
+          {
+            id: 1,
             title: 'Get bananas',
-            done: false
+            done: false,
+            dueDate: '2020/04/20',
+            dueTime: '14:00'
           },
           {
+            id: 2,
             title: 'Eat bananas',
-            done: true
+            done: true,
+            dueDate: '2020/04/21',
+            dueTime: '12:00'
           },
           {
+            id: 3,
             title: 'Poo bananas',
-            done: false
-          }*/
+            done: false,
+            dueDate: '2020/04/22',
+            dueTime: '14:30'
+          }
         ]
       }
     },
