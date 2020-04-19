@@ -1,6 +1,6 @@
 <template>
   <q-item 
-          @click="task.done = !task.done"
+          @click="updateTask({ id: id, updates: { done : !task.done }})"
           clickable
           :class="{ 'done bg-blue-1' : task.done }"
           v-ripple>
@@ -12,7 +12,7 @@
     </q-item-section>
 
     <q-item-section>
-      <q-item-label>{{ task.title }} </q-item-label>
+      <q-item-label>{{ task.title }}</q-item-label>
     </q-item-section>
 
     <q-item-section side top>
@@ -24,21 +24,36 @@
       </q-item-label>
     </q-item-section>
 
-    <q-item-section v-if="task.done"
-                    side>
-      <q-btn @click.stop="deleteTask(id)"
+    <q-item-section side>
+      <q-btn @click.stop="promtDelete(id)"
              flat
              round
              dense
-             color="primary"
+             color="red"
              icon="delete" />
     </q-item-section>
 
   </q-item>
 </template>
 <script>
+  // We can map actions to our component just like map getters ** see in Todo.vue
+  import { mapActions } from 'vuex'
   export default {
-    props: ['task','id']
+    props: ['task', 'id'],
+    methods: {
+      ...mapActions('tasks', ['updateTask', 'deleteTask']),
+      promtDelete(id) {
+        this.$q.dialog({
+          title: 'Confirm',
+          message: 'Really delete?',
+          cancel: true,
+          persistent: true
+        }).onOk(() => {
+          this.deleteTask(id)
+          this.$q.notify('Task deleted',id)
+        })
+      },
+    }
   }
 </script>
 

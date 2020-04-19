@@ -57,17 +57,6 @@
       }
     },
     methods: {
-      deleteTask(key) {
-        this.$q.dialog({
-          title: 'Confirm',
-          message: 'Really delete?',
-          cancel: true,
-          persistent: true
-        }).onOk(() => {
-          this.tasks.splice(key, 1)
-          this.$q.notify('Task deleted')
-        })
-      },
       addTask() {
         this.tasks.push({
           title: this.newTask,
