@@ -1,11 +1,16 @@
 {
   "ExpandedNodes": [
+    "",
     "\\src",
-    "\\src\\css",
+    "\\src\\components",
+    "\\src\\components\\Modals",
+    "\\src\\components\\Tasks",
     "\\src\\layouts",
     "\\src\\pages",
     "\\src\\router",
-    "\\src\\statics"
+    "\\src\\statics",
+    "\\src\\store"
   ],
+  "SelectedNode": "\\src\\store\\store-tasks.js",
   "PreviewInSolutionExplorer": false
 }

@@ -1,10 +1,9 @@
 <template>
   <q-item 
-          @click="updateTask({ id: id, updates: { done : !task.done }})"
-          clickable
-          :class="{ 'done bg-blue-1' : task.done }"
-          v-ripple>
-
+      @click="updateTask({ id: id, updates: { done : !task.done }})"
+      clickable
+      :class="{ 'done bg-blue-1' : task.done }"
+      v-ripple>
     <q-item-section avatar>
       <q-checkbox v-model="task.done"
                   class="no-pointer-events"

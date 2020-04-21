@@ -1,27 +1,27 @@
 import Vue from 'vue'
-
+import { uid } from 'quasar'
 
 // This where all the data go
 const state = {
   tasks: {
-    'ID1': {
-      title: 'Get bananas',
-      done: false,
-      dueDate: '2020/04/20',
-      dueTime: '14:00'
-    },
-    'ID2': {
-      title: 'Eat bananas',
-      done: true,
-      dueDate: '2020/04/21',
-      dueTime: '12:00'
-    },
-    'ID3': {
-      title: 'Poo bananas',
-      done: false,
-      dueDate: '2020/04/22',
-      dueTime: '14:30'
-    }
+    //'ID1': {
+    //  title: 'Get bananas',
+    //  done: false,
+    //  dueDate: '2020/04/20',
+    //  dueTime: '14:00'
+    //},
+    //'ID2': {
+    //  title: 'Eat bananas',
+    //  done: true,
+    //  dueDate: '2020/04/21',
+    //  dueTime: '12:00'
+    //},
+    //'ID3': {
+    //  title: 'Poo bananas',
+    //  done: false,
+    //  dueDate: '2020/04/22',
+    //  dueTime: '14:30'
+    //}
   }
 }
 
@@ -50,6 +50,9 @@ const mutations = {
 
     Vue.delete(state.tasks,id)
 
+  },
+  addTask(state, payload) {
+    Vue.set(state.tasks, payload.id, payload.task)
   }
 }
 
@@ -68,6 +71,14 @@ const actions = {
   deleteTask({ commit }, id) { // in this case the payload just going to be and id, i'll just called it id. meh.
     //console.log('deleteTask action: ',id)
     commit('deleteTask', id) // deleteTask in commit here is a mutation function. It just have the same name
+  },
+  addTask({ commit }, task) {
+    let taskId = uid()
+    let payload = {
+      id: taskId,
+      task: task
+    }
+    commit('addTask', payload)
   }
 }
 
