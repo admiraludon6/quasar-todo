@@ -4,27 +4,26 @@ import { uid } from 'quasar'
 // This where all the data go
 const state = {
   tasks: {
-    //'ID1': {
-    //  title: 'Get bananas',
-    //  done: false,
-    //  dueDate: '2020/04/20',
-    //  dueTime: '14:00'
-    //},
-    //'ID2': {
-    //  title: 'Eat bananas',
-    //  done: true,
-    //  dueDate: '2020/04/21',
-    //  dueTime: '12:00'
-    //},
-    //'ID3': {
-    //  title: 'Poo bananas',
-    //  done: false,
-    //  dueDate: '2020/04/22',
-    //  dueTime: '14:30'
-    //}
+    'ID1': {
+      title: 'Get bananas',
+      done: false,
+      dueDate: '2020/04/20',
+      dueTime: '14:00'
+    },
+    'ID2': {
+      title: 'Eat bananas',
+      done: true,
+      dueDate: '2020/04/21',
+      dueTime: '12:00'
+    },
+    'ID3': {
+      title: 'Poo bananas',
+      done: false,
+      dueDate: '2020/04/22',
+      dueTime: '14:30'
+    }
   }
 }
-
 
 // This will contain method which manipulate the state
 // This object contain method can't be asynchronous, so you can't create a method which

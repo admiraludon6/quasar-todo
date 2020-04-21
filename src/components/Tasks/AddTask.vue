@@ -1,6 +1,7 @@
 <template>
-    <q-input v-model="newTask"
-             @keyup.enter="openTaskModal"
+    <q-input :value="taskTitle"
+             @input="$emit('update:taskTitle',$event)"
+             @keyup.enter="$emit('open')"
              class="col"
              filled
              square
@@ -8,7 +9,7 @@
              placeholder="Add task"
              dense>
       <template v-slot:append>
-        <q-btn @click="openTaskModal"
+        <q-btn @click="$emit('open')"
                round
                dense
                flat
@@ -19,16 +20,7 @@
 
 <script>
   export default {
-    data() {
-      return {
-        newTask: ''
-      }
-    },
-    methods: {
-      openTaskModal() {
-        this.$emit('open')
-      }
-    },
+    props: ['taskTitle'] 
   }
 </script>
 

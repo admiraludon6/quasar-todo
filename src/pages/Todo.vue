@@ -2,7 +2,8 @@
   <q-page class="bg-grey-3 column">
 
     <div class="row q-pa-sm bg-primary">
-      <add-task @open="showAddTask=true" />
+      <add-task :taskTitle.sync="taskTitle"
+                @open="showAddTask=true"/>
     </div>
 
     <q-list class="bg-white"
@@ -25,10 +26,10 @@
       </div>
     </div>
     <q-dialog v-model="showAddTask">
-      <popup-add-task @close="showAddTask=false"/>
+      <popup-add-task @close="showAddTask=false"
+                      :taskTitle.sync="taskTitle"/>
     </q-dialog>
   </q-page>
-
 </template>
 
 <script>
@@ -36,6 +37,7 @@
   export default {
     data() {
       return {
+        taskTitle: '',
         showAddTask: false,
       }
     },
@@ -49,7 +51,7 @@
       // will be HTML attribute task
       'task': require('components/Tasks/Task.vue').default,
       'add-task': require('components/Tasks/AddTask.vue').default,
-      'popup-add-task': require('components/Modals/AddTask.vue').default
+      'popup-add-task': require('components/Tasks/Modals/AddTask.vue').default
     }
   }
 </script>
