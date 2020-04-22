@@ -2,21 +2,21 @@
   <q-page class="bg-grey-3 column">
 
     <div class="row q-pa-sm bg-primary">
-      <add-task :taskTitle.sync="taskTitle"
-                @open="showAddTask=true"/>
+      <task-input :taskTitle.sync="taskTitle"
+                  @open="showAddTask=true" />
     </div>
 
-    <q-list class="bg-white"
-            separator
-            bordered>
-      <task v-for="(task, key) in tasks"
-            :key="key"
-            :task="task"
-            :id="key">
-      </task>
-    </q-list>
+    <no-tasks @open="showAddTask=true"
+              v-if="!Object.keys(tasksTodo).length"></no-tasks>
 
-    <div v-if="!Object.keys(tasks).length"
+    <task-todo v-else
+               :tasksTodo="tasksTodo" />
+
+    <task-done v-if="Object.keys(tasksDone).length"
+               :tasksDone="tasksDone" />
+
+    <!-- // Not needed now
+    <div v-if="!Object.keys(tasksTodo).length"
          class="no-tasks absolute-center">
       <q-icon name="check"
               size="100px"
@@ -25,9 +25,11 @@
         No tasks
       </div>
     </div>
+    -->
+
     <q-dialog v-model="showAddTask">
       <popup-add-task @close="showAddTask=false"
-                      :taskTitle.sync="taskTitle"/>
+                      :taskTitle.sync="taskTitle" />
     </q-dialog>
   </q-page>
 </template>
@@ -45,13 +47,22 @@
       //tasks() {
       //  return this.$store.getters['tasks/tasks']
       //}
-      ...mapGetters('tasks',['tasks'])
+      ...mapGetters('tasks', ['tasksTodo','tasksDone'])
     },
     components: {
       // will be HTML attribute task
-      'task': require('components/Tasks/Task.vue').default,
-      'add-task': require('components/Tasks/AddTask.vue').default,
+      'task-input': require('components/Tasks/TaskInput.vue').default,
+      'task-todo': require('components/Tasks/TaskTodo.vue').default,
+      'task-done': require('components/Tasks/TaskDone.vue').default,
+      'no-tasks': require('components/Tasks/NoTasks.vue').default,
       'popup-add-task': require('components/Tasks/Modals/AddTask.vue').default
+    }, mounted() {
+      // This is a global event bus
+      // Not a good practice
+      // emitted from NoTasks.vue
+      this.$root.$on('showAddTask', () => {
+        this.showAddTask = true
+      })
     }
   }
 </script>

@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\Modals",
     "\\src\\components\\Tasks",
-    "\\src\\layouts",
+    "\\src\\components\\Tasks\\Modals",
+    "\\src\\components\\Tasks\\Modals\\Shared",
     "\\src\\pages",
     "\\src\\router",
     "\\src\\statics",
     "\\src\\store"
   ],
-  "SelectedNode": "\\src\\store\\store-tasks.js",
+  "SelectedNode": "\\src\\components\\Tasks\\Modals\\Shared\\ModalButton.vue",
   "PreviewInSolutionExplorer": false
 }

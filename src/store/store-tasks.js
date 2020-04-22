@@ -23,6 +23,7 @@ const state = {
       dueTime: '14:30'
     }
   }
+  // showAddTaskModal: false ; 
 }
 
 // This will contain method which manipulate the state
@@ -85,8 +86,25 @@ const actions = {
 // used by the components within your app. You can also manipulate the data within
 // a getter before you send it out to your components.
 const getters = {
-  tasks: (state) => {
-    return state.tasks
+  tasksTodo: (state) => {
+    let tasks = {}
+    Object.keys(state.tasks).forEach(function(key) {
+      let task = state.tasks[key]
+      if (!task.done) {
+        tasks[key] = task
+      }
+    })
+    return tasks
+  },
+  tasksDone: (state) => {
+    let tasks = {}
+    Object.keys(state.tasks).forEach(function (key) {
+      let task = state.tasks[key]
+      if (task.done) {
+        tasks[key] = task
+      }
+    })
+    return tasks
   }
 }
 
